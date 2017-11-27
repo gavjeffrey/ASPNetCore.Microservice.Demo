@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  core-banking-sql:
+    image: microsoft/mssql-server-linux
+    networks:
+      - nat
+    hostname: core-banking-sql
+    ports:
+      - 7001:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@$$$$w0rd
+  core-banking-rabbitmq:
+    image: core-banking-rabbitmq
+    ports:
+    - 5672:5672
+    - 15672:15672
+    hostname: core-banking-rabbitmq
+  customerinformation-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile.CustomerInfo      
+    networks:
+      - nat
+    hostname: customerinformation-api
+    ports:
+      - 8080:80
+    environment:
+      - EventBusConnection=core-banking-rabbitmq:5672
+      - ConnectionString=Server=core-banking-sql,7001;Database=DepositAccountDb;User ID=sa;Password=P@$$$$w0rd;Trusted_Connection=False;
+  depositaccounts-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile.DepositAccounts    
+    environment:
+      - EventBusConnection=core-banking-rabbitmq:5672
+      - ConnectionString=Server=core-banking-sql,7001;Database=DepositAccountDb;User ID=sa;Password=P@$$$$w0rd;Trusted_Connection=False;
+    networks:
+      - nat
+    hostname: depositaccounts-api
+    ports:
+      - 8181:80
+    networks:
+      - nat    
+networks:
+  nat:

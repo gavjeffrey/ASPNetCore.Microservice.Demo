@@ -1,0 +1,19 @@
+FROM microsoft/aspnetcore-build:2.0 as build
+
+#copy this (local) entire dir to /app on folder on container
+COPY . /app 
+
+#change the working dir to be in deposit accounts project
+WORKDIR /app/DepositAccounts
+
+RUN dotnet restore
+
+RUN dotnet publish --output /out/ --configuration Release
+
+# runtime image
+FROM microsoft/aspnetcore:2.0
+WORKDIR /app
+EXPOSE 80
+COPY --from=build /out .
+ENTRYPOINT ["dotnet", "DepositAccounts.dll"]
+

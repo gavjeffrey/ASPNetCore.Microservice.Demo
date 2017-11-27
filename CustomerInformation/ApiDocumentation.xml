@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CustomerInformation</name>
+    </assembly>
+    <members>
+        <member name="M:CustomerInformation.Controllers.CustomerProfileController.Get">
+            <summary>
+            Returns all profiles
+            </summary>
+            <returns>list of profiles</returns>
+        </member>
+        <member name="M:CustomerInformation.Controllers.CustomerProfileController.Get(System.Guid)">
+            <summary>
+            Gets a single profile based on id
+            </summary>
+            <param name="id">The Profile unique identifier</param>
+            <returns>Profile</returns>
+        </member>
+        <member name="M:CustomerInformation.Controllers.CustomerProfileController.CreateProspect(CustomerInformation.Models.Profile)">
+            <summary>
+            Creates a Profile with a prospect status
+            </summary>
+            <param name="Profile">The profile to create. A unique profile key should be provided.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CustomerInformation.Controllers.CustomerProfileController.Put(CustomerInformation.Models.Profile)">
+            <summary>
+            Updates an existing profile
+            </summary>
+            <param name="Profile">The profile that needs to be updated</param>
+            <returns>The profile as it was updated</returns>
+        </member>
+    </members>
+</doc>

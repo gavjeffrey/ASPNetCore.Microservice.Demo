@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DepositAccounts</name>
+    </assembly>
+    <members>
+        <member name="M:DepositAccounts.Controllers.DepositAccountController.Get">
+            <summary>
+            Returns complete list of accounts
+            </summary>
+            <returns>List of accounts</returns>
+        </member>
+        <member name="M:DepositAccounts.Controllers.DepositAccountController.Get(System.Guid)">
+            <summary>
+            Returns a single account that matches id supplied
+            </summary>
+            <param name="id">the Id of account to return</param>
+            <returns></returns>
+        </member>
+        <member name="M:DepositAccounts.Controllers.DepositAccountController.Post(DepositAccounts.Models.Account)">
+            <summary>
+            Creates a new account
+            </summary>
+            <param name="Account">The new account to create</param>
+        </member>
+    </members>
+</doc>
